@@ -12,7 +12,7 @@ DIY neural network for digit recognition
 
 ## Features
 
-* Train and run neural network for handwritten digit recognition using [MNIST database of handwritten digits](http://yann.lecun.com/exdb/mnist/).
+* Train and run neural network for handwritten digit recognition using [MNIST database of handwritten digits](https://web.archive.org/web/20200623002706/http://yann.lecun.com/exdb/mnist/).
 * Simple process of running neural network: draw digit in Paint, run `preprocess_image.py`, and run built binary.
 * Dump dataset entries into a directory with PNGs.
 * Set learning hyperparameters and optimizer from command line.
@@ -40,8 +40,7 @@ meson compile -C build
 
 ## Usage
 
-1. Download MNIST database of handwritten digits.
-Go to [http://yann.lecun.com/exdb/mnist/](http://yann.lecun.com/exdb/mnist/) (make sure that you use HTTP, not HTTPS). You need four files:
+1. Download MNIST database of handwritten digits. Go to [https://web.archive.org/web/20200623002706/http://yann.lecun.com/exdb/mnist/](https://web.archive.org/web/20200623002706/http://yann.lecun.com/exdb/mnist/). You need four files:
 
     * train-images-idx3-ubyte.gz
     * train-labels-idx1-ubyte.gz
