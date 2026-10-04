@@ -1,6 +1,6 @@
 # i_love_digits
 
-
+Recognizing handwritten digits on FPGA.
 
 ## Vivado project initialization
 
