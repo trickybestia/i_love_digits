@@ -8,11 +8,16 @@ module top_Nexys_A7_100T (
     output       vga_vs
 );
 
-wire clk_25M175;
+wire clk_sys;
+wire clk_nn;
+wire clk_vga;
 
-vga_mmcm vga_mmcm (
-    .clk_100M   (clk_100M),
-    .clk_25M175 (clk_25M175)
+mmcm mmcm (
+    .clk_100M (clk_100M),
+
+    .clk_sys (clk_sys),
+    .clk_nn  (clk_nn),
+    .clk_vga (clk_vga)
 );
 
 endmodule

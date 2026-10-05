@@ -18,7 +18,7 @@
 proc checkRequiredFiles { origin_dir} {
   set status true
   set files [list \
- "[file normalize "$origin_dir/ip/vga_mmcm/vga_mmcm.xci"]"\
+ "[file normalize "$origin_dir/ip/mmcm/mmcm.xci"]"\
  "[file normalize "$origin_dir/src/rtl/top_Nexys_A7_100T.sv"]"\
  "[file normalize "$origin_dir/src/rtl/frame_buffer_mem.v"]"\
  "[file normalize "$origin_dir/src/rtl/frame_buffer.v"]"\
@@ -167,7 +167,7 @@ if {[string equal [get_filesets -quiet sources_1] ""]} {
 # Set 'sources_1' fileset object
 set obj [get_filesets sources_1]
 set files [list \
- [file normalize "${origin_dir}/ip/vga_mmcm/vga_mmcm.xci"] \
+ [file normalize "${origin_dir}/ip/mmcm/mmcm.xci"] \
  [file normalize "${origin_dir}/src/rtl/top_Nexys_A7_100T.sv"] \
  [file normalize "${origin_dir}/src/rtl/frame_buffer_mem.v"] \
  [file normalize "${origin_dir}/src/rtl/frame_buffer.v"] \
@@ -176,7 +176,7 @@ set files [list \
 add_files -norecurse -fileset $obj $files
 
 # Set 'sources_1' fileset file properties for remote files
-set file "$origin_dir/ip/vga_mmcm/vga_mmcm.xci"
+set file "$origin_dir/ip/mmcm/mmcm.xci"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "generate_files_for_reference" -value "0" -objects $file_obj
