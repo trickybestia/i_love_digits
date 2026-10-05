@@ -1,6 +1,6 @@
 <mxfile host="Electron">
   <diagram name="top_Nexys_A7_100T" id="woimoXUcVUApHqN944G9">
-    <mxGraphModel dx="2538" dy="506" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2024" dy="324" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1309,20 +1309,6 @@
             <mxRectangle height="40" width="80" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="h-dp4WEiezvapy0A4xH0-27" edge="1" parent="1" style="edgeStyle=segmentEdgeStyle;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="TK8-elQTFnZ7YELirflp-133" value="">
-          <mxGeometry relative="1" width="100" as="geometry">
-            <Array as="points">
-              <mxPoint x="-490" y="810" />
-            </Array>
-            <mxPoint x="-490" y="810" as="sourcePoint" />
-            <mxPoint x="-440" y="860" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="h-dp4WEiezvapy0A4xH0-28" connectable="0" parent="h-dp4WEiezvapy0A4xH0-27" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1&#39;b1" vertex="1">
-          <mxGeometry relative="1" x="-0.9255" y="1" as="geometry">
-            <mxPoint x="-23" y="1" as="offset" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="h-dp4WEiezvapy0A4xH0-29" edge="1" parent="1" source="h-dp4WEiezvapy0A4xH0-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="TK8-elQTFnZ7YELirflp-112">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
@@ -1354,6 +1340,11 @@
         </mxCell>
         <mxCell id="h-dp4WEiezvapy0A4xH0-37" edge="1" parent="1" source="-JteD-RDiZJU9ZqRwNA7-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="h-dp4WEiezvapy0A4xH0-5">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="S8VWrC6aqlyY8ATMDTwh-1" edge="1" parent="1" source="TK8-elQTFnZ7YELirflp-133" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-450" y="810" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
