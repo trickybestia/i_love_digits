@@ -18,8 +18,11 @@
 proc checkRequiredFiles { origin_dir} {
   set status true
   set files [list \
- "[file normalize "$origin_dir/src/rtl/top_Nexys_A7_100T.sv"]"\
  "[file normalize "$origin_dir/ip/vga_mmcm/vga_mmcm.xci"]"\
+ "[file normalize "$origin_dir/src/rtl/top_Nexys_A7_100T.sv"]"\
+ "[file normalize "$origin_dir/src/rtl/frame_buffer_mem.v"]"\
+ "[file normalize "$origin_dir/src/rtl/frame_buffer.v"]"\
+ "[file normalize "$origin_dir/src/rtl/vga.v"]"\
  "[file normalize "$origin_dir/src/Nexys_A7_100T.xdc"]"\
   ]
   foreach ifile $files {
@@ -164,29 +167,11 @@ if {[string equal [get_filesets -quiet sources_1] ""]} {
 # Set 'sources_1' fileset object
 set obj [get_filesets sources_1]
 set files [list \
- [file normalize "${origin_dir}/src/rtl/top_Nexys_A7_100T.sv"] \
-]
-add_files -norecurse -fileset $obj $files
-
-# Set 'sources_1' fileset file properties for remote files
-set file "$origin_dir/src/rtl/top_Nexys_A7_100T.sv"
-set file [file normalize $file]
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
-
-
-# Set 'sources_1' fileset file properties for local files
-# None
-
-# Set 'sources_1' fileset properties
-set obj [get_filesets sources_1]
-set_property -name "dataflow_viewer_settings" -value "min_width=16" -objects $obj
-set_property -name "top" -value "top_Nexys_A7_100T" -objects $obj
-
-# Set 'sources_1' fileset object
-set obj [get_filesets sources_1]
-set files [list \
  [file normalize "${origin_dir}/ip/vga_mmcm/vga_mmcm.xci"] \
+ [file normalize "${origin_dir}/src/rtl/top_Nexys_A7_100T.sv"] \
+ [file normalize "${origin_dir}/src/rtl/frame_buffer_mem.v"] \
+ [file normalize "${origin_dir}/src/rtl/frame_buffer.v"] \
+ [file normalize "${origin_dir}/src/rtl/vga.v"] \
 ]
 add_files -norecurse -fileset $obj $files
 
@@ -200,9 +185,20 @@ if { ![get_property "is_locked" $file_obj] } {
   set_property -name "synth_checkpoint_mode" -value "Singular" -objects $file_obj
 }
 
+set file "$origin_dir/src/rtl/top_Nexys_A7_100T.sv"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
+
 
 # Set 'sources_1' fileset file properties for local files
 # None
+
+# Set 'sources_1' fileset properties
+set obj [get_filesets sources_1]
+set_property -name "dataflow_viewer_settings" -value "min_width=16" -objects $obj
+set_property -name "top" -value "top_Nexys_A7_100T" -objects $obj
+set_property -name "top_auto_set" -value "0" -objects $obj
 
 # Create 'constrs_1' fileset (if not found)
 if {[string equal [get_filesets -quiet constrs_1] ""]} {
@@ -237,6 +233,7 @@ set obj [get_filesets sim_1]
 set obj [get_filesets sim_1]
 set_property -name "sim_wrapper_top" -value "1" -objects $obj
 set_property -name "top" -value "top_Nexys_A7_100T" -objects $obj
+set_property -name "top_auto_set" -value "0" -objects $obj
 set_property -name "top_lib" -value "xil_defaultlib" -objects $obj
 
 # Set 'utils_1' fileset object
@@ -272,7 +269,6 @@ if { $obj != "" } {
 
 }
 set obj [get_runs synth_1]
-set_property -name "needs_refresh" -value "1" -objects $obj
 set_property -name "part" -value "xc7a100tcsg324-1" -objects $obj
 set_property -name "auto_incremental_checkpoint" -value "1" -objects $obj
 set_property -name "strategy" -value "Vivado Synthesis Defaults" -objects $obj
@@ -496,7 +492,6 @@ set_property -name "options.warn_on_violation" -value "1" -objects $obj
 
 }
 set obj [get_runs impl_1]
-set_property -name "needs_refresh" -value "1" -objects $obj
 set_property -name "part" -value "xc7a100tcsg324-1" -objects $obj
 set_property -name "strategy" -value "Vivado Implementation Defaults" -objects $obj
 set_property -name "steps.write_bitstream.args.readback_file" -value "0" -objects $obj
