@@ -18,6 +18,7 @@
 proc checkRequiredFiles { origin_dir} {
   set status true
   set files [list \
+ "[file normalize "$origin_dir/src/rtl/cursor_info_cdc.sv"]"\
  "[file normalize "$origin_dir/ip/mmcm/mmcm.xci"]"\
  "[file normalize "$origin_dir/src/rtl/top_Nexys_A7_100T.sv"]"\
  "[file normalize "$origin_dir/src/rtl/frame_buffer_mem.v"]"\
@@ -168,6 +169,7 @@ if {[string equal [get_filesets -quiet sources_1] ""]} {
 # Set 'sources_1' fileset object
 set obj [get_filesets sources_1]
 set files [list \
+ [file normalize "${origin_dir}/src/rtl/cursor_info_cdc.sv"] \
  [file normalize "${origin_dir}/ip/mmcm/mmcm.xci"] \
  [file normalize "${origin_dir}/src/rtl/top_Nexys_A7_100T.sv"] \
  [file normalize "${origin_dir}/src/rtl/frame_buffer_mem.v"] \
