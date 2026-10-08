@@ -154,9 +154,9 @@ always_ff @(posedge clk) begin
                 end
 
                 if (paint_x + paint_size > PAINT_POS_MAX) begin
-                    paint_end_x = PAINT_POS_MAX;
+                    paint_end_x <= PAINT_POS_MAX;
                 end else begin
-                    paint_end_x = paint_x + paint_size;
+                    paint_end_x <= paint_x + paint_size;
                 end
             end
         end
@@ -180,9 +180,9 @@ always_ff @(posedge clk) begin
                 end
 
                 if (paint_y + paint_size > PAINT_POS_MAX) begin
-                    paint_end_y = PAINT_POS_MAX;
+                    paint_end_y <= PAINT_POS_MAX;
                 end else begin
-                    paint_end_y = paint_y + paint_size;
+                    paint_end_y <= paint_y + paint_size;
                 end
             end
         end
