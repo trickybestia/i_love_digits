@@ -120,6 +120,11 @@ xpm_fifo_async #(
                        // FIFO core becomes corrupted.
 );
 
+initial begin
+    pixel_in_counter  <= 0;
+    pixel_out_counter <= 0;
+end
+
 // pixel_in_counter
 always_ff @(posedge pixel_in_clk) begin
     if (pixel_in_valid && pixel_in_ready) begin
