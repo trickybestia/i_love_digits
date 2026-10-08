@@ -20,6 +20,7 @@ proc checkRequiredFiles { origin_dir} {
   set files [list \
  "[file normalize "$origin_dir/ip/mmcm/mmcm.xci"]"\
  "[file normalize "$origin_dir/src/rtl/top_Nexys_A7_100T.sv"]"\
+ "[file normalize "$origin_dir/src/rtl/pixel_iter_cdc.sv"]"\
  "[file normalize "$origin_dir/src/rtl/cursor_info_cdc.sv"]"\
  "[file normalize "$origin_dir/src/rtl/frame_buffer_mem.v"]"\
  "[file normalize "$origin_dir/src/rtl/frame_buffer.v"]"\
@@ -27,7 +28,7 @@ proc checkRequiredFiles { origin_dir} {
  "[file normalize "$origin_dir/src/rtl/cursor_controller.sv"]"\
  "[file normalize "$origin_dir/src/rtl/neural_network_out_cdc.sv"]"\
  "[file normalize "$origin_dir/src/rtl/neural_network.sv"]"\
- "[file normalize "$origin_dir/src/rtl/pixel_iter_cdc.sv"]"\
+ "[file normalize "$origin_dir/src/rtl/pixel_mem.sv"]"\
  "[file normalize "$origin_dir/src/Nexys_A7_100T.xdc"]"\
   ]
   foreach ifile $files {
@@ -174,6 +175,7 @@ set obj [get_filesets sources_1]
 set files [list \
  [file normalize "${origin_dir}/ip/mmcm/mmcm.xci"] \
  [file normalize "${origin_dir}/src/rtl/top_Nexys_A7_100T.sv"] \
+ [file normalize "${origin_dir}/src/rtl/pixel_iter_cdc.sv"] \
  [file normalize "${origin_dir}/src/rtl/cursor_info_cdc.sv"] \
  [file normalize "${origin_dir}/src/rtl/frame_buffer_mem.v"] \
  [file normalize "${origin_dir}/src/rtl/frame_buffer.v"] \
@@ -181,7 +183,7 @@ set files [list \
  [file normalize "${origin_dir}/src/rtl/cursor_controller.sv"] \
  [file normalize "${origin_dir}/src/rtl/neural_network_out_cdc.sv"] \
  [file normalize "${origin_dir}/src/rtl/neural_network.sv"] \
- [file normalize "${origin_dir}/src/rtl/pixel_iter_cdc.sv"] \
+ [file normalize "${origin_dir}/src/rtl/pixel_mem.sv"] \
 ]
 add_files -norecurse -fileset $obj $files
 
@@ -196,6 +198,11 @@ if { ![get_property "is_locked" $file_obj] } {
 }
 
 set file "$origin_dir/src/rtl/top_Nexys_A7_100T.sv"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
+
+set file "$origin_dir/src/rtl/pixel_iter_cdc.sv"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
@@ -220,7 +227,7 @@ set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
 
-set file "$origin_dir/src/rtl/pixel_iter_cdc.sv"
+set file "$origin_dir/src/rtl/pixel_mem.sv"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "SystemVerilog" -objects $file_obj
