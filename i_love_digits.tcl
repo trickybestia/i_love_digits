@@ -25,6 +25,7 @@ proc checkRequiredFiles { origin_dir} {
  "[file normalize "$origin_dir/src/rtl/frame_buffer.v"]"\
  "[file normalize "$origin_dir/src/rtl/vga.v"]"\
  "[file normalize "$origin_dir/src/rtl/cursor_controller.sv"]"\
+ "[file normalize "$origin_dir/src/rtl/neural_network_out_cdc.sv"]"\
  "[file normalize "$origin_dir/src/Nexys_A7_100T.xdc"]"\
   ]
   foreach ifile $files {
@@ -176,6 +177,7 @@ set files [list \
  [file normalize "${origin_dir}/src/rtl/frame_buffer.v"] \
  [file normalize "${origin_dir}/src/rtl/vga.v"] \
  [file normalize "${origin_dir}/src/rtl/cursor_controller.sv"] \
+ [file normalize "${origin_dir}/src/rtl/neural_network_out_cdc.sv"] \
 ]
 add_files -norecurse -fileset $obj $files
 
