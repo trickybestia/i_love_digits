@@ -9,7 +9,8 @@ module cursor_controller #(
     parameter CURSOR_Y_WIDTH    = $clog2(CURSOR_Y_MAX + 1),
     parameter CURSOR_SIZE_MAX   = 63,
     parameter CURSOR_SIZE_WIDTH = 6,
-    parameter PAINT_POS_WIDTH   = 9
+    parameter PAINT_POS_WIDTH   = 9,
+    parameter PAINT_POS_MAX     = 479
 ) (
     input clk,
 
@@ -38,39 +39,64 @@ wire signed [CURSOR_SIZE_WIDTH + 2 - 1:0] cursor_size_next_extended = cursor_siz
 wire signed [CURSOR_X_WIDTH + 2 - 1:0]    cursor_x_next_extended    = cursor_x + dx * MOVE_SCALE_MUL / MOVE_SCALE_DIV;
 wire signed [CURSOR_Y_WIDTH + 2 - 1:0]    cursor_y_next_extended    = cursor_y + dy * MOVE_SCALE_MUL / MOVE_SCALE_DIV;
 
+logic [CURSOR_X_WIDTH - 1:0]    cursor_x_next;
+logic [CURSOR_Y_WIDTH - 1:0]    cursor_y_next;
+logic [CURSOR_SIZE_WIDTH - 1:0] cursor_size_next;
+
 assign input_ready = paint_ready;
 
-assign paint_x     = cursor_x;
-assign paint_y     = cursor_y;
+assign paint_x     = cursor_x_next;
+assign paint_y     = cursor_y_next;
 assign paint_color = lmb_pressed;
 assign paint_size  = cursor_size;
-assign paint_valid = input_valid && (lmb_pressed || rmb_pressed);
+assign paint_valid = input_valid && (lmb_pressed || rmb_pressed) && cursor_x_next <= PAINT_POS_MAX && cursor_y_next <= PAINT_POS_MAX;
+
+// cursor_x_next
+always_comb begin
+    cursor_x_next = cursor_x;
+
+    if (input_valid) begin
+        if (cursor_x_next_extended < 0)                 cursor_x_next = 0;
+        else if (cursor_x_next_extended > CURSOR_X_MAX) cursor_x_next = CURSOR_X_MAX;
+        else                                            cursor_x_next = cursor_x_next_extended;
+    end
+end
+
+// cursor_y_next
+always_comb begin
+    cursor_y_next = cursor_y;
+
+    if (input_valid) begin
+        if (cursor_y_next_extended < 0)                 cursor_y_next = 0;
+        else if (cursor_y_next_extended > CURSOR_Y_MAX) cursor_y_next = CURSOR_Y_MAX;
+        else                                            cursor_y_next = cursor_y_next_extended;
+    end
+end
+
+// cursor_size_next
+always_comb begin
+    cursor_size_next = cursor_size;
+
+    if (input_valid) begin
+        if (cursor_size_next_extended < 0)                    cursor_size_next = 0;
+        else if (cursor_size_next_extended > CURSOR_SIZE_MAX) cursor_size_next = CURSOR_SIZE_MAX;
+        else                                                  cursor_size_next = cursor_size_next_extended;
+    end
+end
 
 // cursor_x
 always_ff @(posedge clk) begin
-    if (input_valid) begin
-        if (cursor_x_next_extended < 0)                 cursor_x <= 0;
-        else if (cursor_x_next_extended > CURSOR_X_MAX) cursor_x <= CURSOR_X_MAX;
-        else                                            cursor_x <= cursor_x_next_extended;
-    end
+    cursor_x <= cursor_x_next;
 end
 
 // cursor_y
 always_ff @(posedge clk) begin
-    if (input_valid) begin
-        if (cursor_y_next_extended < 0)                 cursor_y <= 0;
-        else if (cursor_y_next_extended > CURSOR_Y_MAX) cursor_y <= CURSOR_Y_MAX;
-        else                                            cursor_y <= cursor_y_next_extended;
-    end
+    cursor_y <= cursor_y_next;
 end
 
 // cursor_size
 always_ff @(posedge clk) begin
-    if (input_valid) begin
-        if (cursor_size_next_extended < 0)                    cursor_size <= 0;
-        else if (cursor_size_next_extended > CURSOR_SIZE_MAX) cursor_size <= CURSOR_SIZE_MAX;
-        else                                                  cursor_size <= cursor_size_next_extended;
-    end
+    cursor_size <= cursor_size_next;
 end
 
 endmodule
