@@ -83,7 +83,7 @@ void showcase(NeuralNetwork &neural_network) {
     size_t digit = max_item_index(output);
 
     for (size_t j = 0; j != output.size(); j++) {
-      string s = format("{}: {:.4f}", j, output(j));
+        string s = format("{}: {:.4f}", j, (double)output(j));
 
       if (j == digit) {
         s = format("\x1B[107m\x1B[30m{}\033[0m\033[0m", s);
@@ -126,7 +126,7 @@ int main(int argc, char **argv) {
 
   if (args.compute_test_accuracy) {
     cout << format("Test set accuracy: {}\n",
-                   compute_test_accuracy(neural_network, dataset));
+                   (double)compute_test_accuracy(neural_network, dataset));
 
     return 0;
   }
@@ -157,9 +157,9 @@ int main(int argc, char **argv) {
       cout << format("Samples: {:6}; epoch: {:6}; accuracy: "
                      "{:.4f}; mean error: {:.7f}\n",
                      j, j / dataset.train_entries().size(),
-                     static_cast<TFloat>(correctly_predicted) /
+                     static_cast<double>(correctly_predicted) /
                          SAMPLES_BETWEEN_LOG,
-                     mean_error / SAMPLES_BETWEEN_LOG);
+                     (double)mean_error / SAMPLES_BETWEEN_LOG);
 
       correctly_predicted = 0;
       mean_error = 0.0;
