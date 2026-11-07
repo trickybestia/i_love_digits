@@ -9,7 +9,7 @@ private:
   Matrix _factors;
   std::mt19937_64 _rng;
   std::bernoulli_distribution _probability_distribution;
-  std::uniform_real_distribution<TFloat> _value_distribution;
+  std::uniform_real_distribution<double> _value_distribution;
 
 public:
   UniformNoise(float probability, TFloat min, TFloat max);

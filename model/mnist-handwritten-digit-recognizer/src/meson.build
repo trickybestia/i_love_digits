@@ -6,6 +6,7 @@ sources += files(
   'neural_network_builder.cpp',
   'neural_network.cpp',
   'utils.cpp',
+  'tfloat.cpp'
 )
 
 subdir('error_functions')

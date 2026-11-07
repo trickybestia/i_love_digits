@@ -6,7 +6,7 @@
 using namespace std;
 
 void randomize_matrix(Matrix &matrix, random_device &rd,
-                      uniform_real_distribution<TFloat> &distribution) {
+                      uniform_real_distribution<double> &distribution) {
   for (size_t i = 0; i != matrix.size(); i++) {
     matrix(i) = distribution(rd);
   }
@@ -14,7 +14,7 @@ void randomize_matrix(Matrix &matrix, random_device &rd,
 
 void NeuralNetwork::randomize_parameters(TFloat min, TFloat max) {
   random_device rd;
-  uniform_real_distribution distribution(min, max);
+  uniform_real_distribution distribution((double)min, (double)max);
 
   randomize_matrix(this->_parameters, rd, distribution);
 }

@@ -1,7 +1,7 @@
 #include <math.h>
 #include <iostream>
 
-#include "tfloat.h"
+#include "tfloat.hpp"
 
 TFloat::TFloat() {
     set_tfloat(&this->n, 0.0);

@@ -3,7 +3,7 @@
 using namespace std;
 
 UniformNoise::UniformNoise(float probability, TFloat min, TFloat max)
-    : _probability_distribution(probability), _value_distribution(min, max) {
+    : _probability_distribution(probability), _value_distribution((double)min, (double)max) {
   random_device rd;
 
   this->_rng.seed(rd());
