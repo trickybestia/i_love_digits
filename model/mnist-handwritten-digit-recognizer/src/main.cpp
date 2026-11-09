@@ -77,7 +77,7 @@ void showcase(NeuralNetwork &neural_network) {
   Matrix input(28 * 28, 1);
 
   do {
-    load_matrix(input, "image.bin");
+    load_matrix_float(input, "image.bin");
 
     Matrix output = neural_network.forward(input);
     size_t digit = max_item_index(output);
